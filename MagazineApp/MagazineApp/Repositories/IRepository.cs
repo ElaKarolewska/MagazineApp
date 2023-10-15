@@ -2,8 +2,8 @@
 
 namespace MagazineApp.Repositories;
 
-public interface IRepository <T> : IWriteRepository<T>, IReadRepository<T>
-	  where T : class, IEntity
+public interface IRepository<T> : IWriteRepository<T>, IReadRepository<T>
+      where T : class, IEntity
 {
 }
 
