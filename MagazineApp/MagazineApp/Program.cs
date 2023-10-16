@@ -4,26 +4,15 @@ using MagazineApp.Repositories;
 
 var medicineRepository = new SqlRepository<Medicine>(new MagazineAppDbContext());
 bool prescriptionDrug = true;
-//bool notPrescriptionDrug = true;
 
 AddMedicines(medicineRepository, prescriptionDrug);
 WriteAllToConsole(medicineRepository);
-
 static void AddMedicines(IRepository<Medicine> medicineRepository, bool prescriptionDrug)
-{    medicineRepository.Add(new Medicine { NameOfTheMedicine = "Apap" }, false);
-    medicineRepository.Add(new Medicine { NameOfTheMedicine = "Bisocard" }, true);
+{
+    medicineRepository.Add(new Medicine { Name = "Apap" , PrescriptionDrug = false });
+    medicineRepository.Add(new Medicine { Name = "Bisocard" , PrescriptionDrug = true });
     medicineRepository.Save();
 }
-
-//if (prescriptionDrug)
-//{
-//    Console.WriteLine("Rx");
-//}
-//else
-//{
-//    Console.WriteLine("OTC");
-//}
-
 
 static void WriteAllToConsole(IReadRepository<IEntity> repository)
 {

@@ -13,7 +13,7 @@ public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
         _dbContext = dbContext;
         _dbSet = dbContext.Set<T>();
     }
-    public void Add(T item, bool prescriptionDrug)
+    public void Add(T item)
     {
        _dbSet.Add(item);
     }
