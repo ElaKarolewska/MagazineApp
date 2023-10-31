@@ -5,7 +5,7 @@ namespace MagazineApp.Data;
 
 public class MagazineAppDbContext: DbContext
 {
-    public DbSet<Medicine> Medecines => Set<Medicine>();
+    public DbSet<Medicine> Medicines => Set<Medicine>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

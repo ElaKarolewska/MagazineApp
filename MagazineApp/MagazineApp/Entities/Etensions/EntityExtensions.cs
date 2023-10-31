@@ -9,4 +9,5 @@ public static class EntityExtensions
         var json = JsonSerializer.Serialize<T>(itemToCopy);
         return JsonSerializer.Deserialize<T>(json);
     }
+
 }

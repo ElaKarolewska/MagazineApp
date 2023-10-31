@@ -4,7 +4,7 @@ namespace MagazineApp.Repositories.Extensions;
 
 public static class RepositoryExtensions
 {
-    public static void AddBatch<T>(this IRepository<T> repository, T[] items)
+    public static void AddBatch<T>(this IRepository<T> repository,  IEnumerable<T> items)
     where T : class, IEntity
     {
         foreach (var item in items)
@@ -14,5 +14,10 @@ public static class RepositoryExtensions
 
         repository.Save();
     }
-
+    public static void RemoveItem<T>(this IRepository<T> repository, T item)
+       where T : class, IEntity 
+    {
+        repository.Remove(item);
+        repository.Save();
+    }
 }
