@@ -85,8 +85,8 @@ Console.ReadKey();
 
 static void AddMedicines (SqlRepository<Medicine> medicineRepository, bool prescriptionDrug)
 {
-//    //Console.WriteLine("Please insert name, dose and true or false if it's a prescription drug:");
-//    // Console.ReadLine();
+    //Console.WriteLine("Please insert name, dose and true or false if it's a prescription drug:");
+   //Console.ReadLine();
 
     var medicines = new []
     {
@@ -98,7 +98,7 @@ static void AddMedicines (SqlRepository<Medicine> medicineRepository, bool presc
     string medicinesSerialized = JsonConvert.SerializeObject(medicines);
     File.WriteAllText(@"D:\Projekty\Json\save.json", medicinesSerialized);
 
-    //medicineRepository.AddBatch(medicines);
+    medicineRepository.AddBatch(medicines);
 
 }
 
