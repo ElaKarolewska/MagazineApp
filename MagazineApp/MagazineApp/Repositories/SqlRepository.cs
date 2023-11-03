@@ -8,7 +8,7 @@ public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
 {
     private readonly DbContext _dbContext;
     private readonly DbSet<T> _dbSet;
-    public SqlRepository(DbContext dbContext, Action<Medicine> medicineAdded, Action<Medicine> medicineRemoved) 
+    public SqlRepository(DbContext dbContext)
     {
         _dbContext = dbContext;
         _dbSet = dbContext.Set<T>();
@@ -39,8 +39,8 @@ public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
         _dbContext.SaveChanges();
     }
 
-    //public IEnumerable<T> Read()
-    //{
-    //    return _dbSet.ToList();
-    //}
+    public IEnumerable<T> Read()
+    {
+        return _dbSet.ToList();
+    }
 }
