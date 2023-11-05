@@ -25,7 +25,8 @@ public class Medicine : EntityBase
         }
        
         return sb.ToString();
-    }     
+    }
+
 }
 
 

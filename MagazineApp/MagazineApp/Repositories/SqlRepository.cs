@@ -1,19 +1,19 @@
-﻿using MagazineApp.Data;
-using MagazineApp.Entities;
+﻿using MagazineApp.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MagazineApp.Repositories;
 
-public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
+public class SqlRepository<T> : IRepository<T> 
+    where T : class, IEntity, new()
 {
     private readonly DbContext _dbContext;
     private readonly DbSet<T> _dbSet;
-    public SqlRepository(DbContext dbContext, Action<Medicine> medicineAdded, Action<Medicine> medicineRemoved) 
+    public SqlRepository(DbContext dbContext) 
     {
         _dbContext = dbContext;
         _dbSet = dbContext.Set<T>();
     }
-
+    
     public event EventHandler<T>? ItemAdded;
     public event EventHandler<T>? ItemRemoved;
     public IEnumerable<T> GetAll()
@@ -38,9 +38,8 @@ public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
         _dbContext.SaveChanges();
     }
-
-    //public IEnumerable<T> Read()
-    //{
-    //    return _dbSet.ToList();
-    //}
+    public IEnumerable<T> Read()
+    {
+        return _dbSet.ToList();
+    }
 }
