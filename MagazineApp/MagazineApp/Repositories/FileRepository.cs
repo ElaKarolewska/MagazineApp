@@ -17,16 +17,16 @@ public class FileRepository<T> : IRepository<T>
     public IEnumerable<T> GetAll()
     {
         ////return _items.ToList();
-        if (File.Exists(path)) 
+        if (File.Exists(path))
         {
             var objectsSerialized = File.ReadAllText(path);
             var deserializedObjects = JsonSerializer.Deserialize<IEnumerable<T>>(objectsSerialized);
-            if (deserializedObjects is not null) 
+            if (deserializedObjects is not null)
             {
                 _items = new List<T>();
-                foreach (var items in deserializedObjects) 
+                foreach (var items in deserializedObjects)
                 {
-                   _items.Add(items);
+                    _items.Add(items);
                 }
             }
         }
@@ -63,7 +63,7 @@ public class FileRepository<T> : IRepository<T>
         _items.Add(item);
         ItemAdded?.Invoke(this, item);
     }
-    public T GetById(int id)
+    public T? GetById(int id)
     {
         var itemById = _items.SingleOrDefault(item => item.Id == id);
         if (itemById == null) 
