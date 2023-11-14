@@ -23,6 +23,12 @@ namespace MagazineApp.Entities.DataProviders
             return medicines.OrderBy(x => x.Name).ToList();
         }
 
+        public Medicine SingleOrDefaultById(int id)
+        {
+            var medicines = _medicinesRepository.GetAll();
+            return medicines.SingleOrDefault(x => x.Id == id);
+        }
+
         public List<Medicine> WhereQuantityIsGreaterThan(int quantity)
         {
             var medicines = _medicinesRepository.GetAll();

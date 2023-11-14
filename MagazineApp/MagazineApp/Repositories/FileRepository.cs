@@ -70,7 +70,6 @@ public class FileRepository<T> : IRepository<T>
         {
             Console.WriteLine($"{typeof(T).Name} with ID {id} not found.");
         }
-
         return itemById;
         
         //return _items.Single(item => item.Id == id);

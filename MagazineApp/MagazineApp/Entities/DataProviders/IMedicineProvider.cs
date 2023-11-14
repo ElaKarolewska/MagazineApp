@@ -8,5 +8,6 @@ namespace MagazineApp.Entities.DataProviders
         List<Medicine> OrderByName();
         List<Medicine> WhereStartsWith(string prefix);
         List<Medicine> WhereQuantityIsGreaterThan(int quantity);
-    }
+        Medicine SingleOrDefaultById(int id);
+   }
 }
