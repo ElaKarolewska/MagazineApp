@@ -6,17 +6,13 @@ namespace MagazineApp.Repositories;
 public class FileRepository<T> : IRepository<T>
     where T : class, IEntity, new()
 {
-
     public event EventHandler<T>? ItemAdded;
     public event EventHandler<T>? ItemRemoved;
 
     private List<T> _items = new();
     private readonly string path = $"{typeof(T).Name}_save.json";
-
-    //private int lastUsedId = 1;
     public IEnumerable<T> GetAll()
     {
-        ////return _items.ToList();
         if (File.Exists(path))
         {
             var objectsSerialized = File.ReadAllText(path);
@@ -34,17 +30,6 @@ public class FileRepository<T> : IRepository<T>
     }
     public void Add(T item)
     {
-        //if (_items.Count == 0)                       // to też dobrze działa
-        //{
-        //    item.Id = lastUsedId;
-        //    lastUsedId++;
-        //}
-        //else if (_items.Count > 0)
-        //{
-        //    lastUsedId = _items[_items.Count - 1].Id;
-        //    item.Id = ++lastUsedId;
-        //}
-
         int newId;
         if (_items.Count == 0)
         {
@@ -58,7 +43,6 @@ public class FileRepository<T> : IRepository<T>
                .Last();
             newId = currentId + 1;
         }
-        ////item.Id = _items.Count + 1;
         item.Id = newId;
         _items.Add(item);
         ItemAdded?.Invoke(this, item);
@@ -72,7 +56,6 @@ public class FileRepository<T> : IRepository<T>
         }
         return itemById;
         
-        //return _items.Single(item => item.Id == id);
     }
     public void Remove(T item)
     {

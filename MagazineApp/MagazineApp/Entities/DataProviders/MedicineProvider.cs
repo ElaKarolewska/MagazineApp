@@ -11,6 +11,7 @@ namespace MagazineApp.Entities.DataProviders
         {
             _medicinesRepository = medicinesRepository;
         }
+
         public double GetMaximumPriceOfAllMedicines()
         {
             var medicines = _medicinesRepository.GetAll();

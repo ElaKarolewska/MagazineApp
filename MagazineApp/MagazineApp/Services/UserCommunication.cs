@@ -1,7 +1,6 @@
 ﻿using MagazineApp.Entities;
 using MagazineApp.Entities.DataProviders;
 using MagazineApp.Repositories;
-using System.Drawing;
 
 namespace MagazineApp.Services;
 
@@ -9,8 +8,6 @@ public class UserCommunication : IUserCommunication
 {
     private readonly IRepository<Medicine> _medicineRepository;
     private readonly IMedicineProvider? _medicineProvider;
-    //private readonly bool item;
-
     public UserCommunication(IRepository<Medicine> medicineRepository, IMedicineProvider medicineProvider)
     {
         _medicineRepository = medicineRepository;
@@ -74,7 +71,6 @@ public class UserCommunication : IUserCommunication
         Console.WriteLine("Now you can press any key to leave.");
         Console.ReadKey();
      }
-
     private void SingleOrDefaultById(IMedicineProvider? medicineProvider)
     {
         Console.WriteLine("Please enter ID:");
