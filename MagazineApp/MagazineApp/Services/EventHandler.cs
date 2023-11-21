@@ -1,6 +1,6 @@
 ﻿
-using MagazineApp.Entities;
-using MagazineApp.Repositories;
+using MagazineApp.Data.Entities;
+using MagazineApp.Data.Repositories;
 
 namespace MagazineApp.Services;
 

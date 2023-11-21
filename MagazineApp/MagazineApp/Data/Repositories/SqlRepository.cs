@@ -1,19 +1,19 @@
-﻿using MagazineApp.Entities;
+﻿using MagazineApp.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace MagazineApp.Repositories;
+namespace MagazineApp.Data.Repositories;
 
-public class SqlRepository<T> : IRepository<T> 
+public class SqlRepository<T> : IRepository<T>
     where T : class, IEntity, new()
 {
     private readonly DbContext _dbContext;
     private readonly DbSet<T> _dbSet;
-    public SqlRepository(DbContext dbContext) 
+    public SqlRepository(DbContext dbContext)
     {
         _dbContext = dbContext;
         _dbSet = dbContext.Set<T>();
     }
-    
+
     public event EventHandler<T>? ItemAdded;
     public event EventHandler<T>? ItemRemoved;
     public IEnumerable<T> GetAll()

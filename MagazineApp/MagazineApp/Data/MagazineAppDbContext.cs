@@ -1,4 +1,4 @@
-﻿using MagazineApp.Entities;
+﻿using MagazineApp.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MagazineApp.Data;

@@ -1,6 +1,6 @@
-﻿using MagazineApp.Entities;
+﻿using MagazineApp.Data.Entities;
 
-namespace MagazineApp.Repositories;
+namespace MagazineApp.Data.Repositories;
 
 public interface IRepository<T> : IWriteRepository<T>, IReadRepository<T>
       where T : class, IEntity

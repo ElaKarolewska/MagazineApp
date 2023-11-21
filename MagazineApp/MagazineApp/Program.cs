@@ -1,7 +1,7 @@
 ﻿using MagazineApp;
-using MagazineApp.Entities;
-using MagazineApp.Entities.DataProviders;
-using MagazineApp.Repositories;
+using MagazineApp.Components.DataProviders;
+using MagazineApp.Data.Entities;
+using MagazineApp.Data.Repositories;
 using MagazineApp.Services;
 using Microsoft.Extensions.DependencyInjection;
 

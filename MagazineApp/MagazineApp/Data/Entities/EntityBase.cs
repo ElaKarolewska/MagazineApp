@@ -1,4 +1,4 @@
-﻿namespace MagazineApp.Entities;
+﻿namespace MagazineApp.Data.Entities;
 
 public abstract class EntityBase : IEntity
 {

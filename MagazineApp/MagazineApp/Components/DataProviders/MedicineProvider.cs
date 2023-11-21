@@ -1,13 +1,13 @@
-﻿
-using MagazineApp.Repositories;
+﻿using MagazineApp.Data.Entities;
+using MagazineApp.Data.Repositories;
 
-namespace MagazineApp.Entities.DataProviders
+namespace MagazineApp.Components.DataProviders
 {
     public class MedicineProvider : IMedicineProvider
     {
         private readonly IRepository<Medicine> _medicinesRepository;
 
-        public MedicineProvider(IRepository<Medicine> medicinesRepository) 
+        public MedicineProvider(IRepository<Medicine> medicinesRepository)
         {
             _medicinesRepository = medicinesRepository;
         }
@@ -39,7 +39,7 @@ namespace MagazineApp.Entities.DataProviders
         public List<Medicine> WhereStartsWith(string prefix)
         {
             var medicines = _medicinesRepository.GetAll();
-            return medicines.Where(x =>x.Name.StartsWith(prefix)).ToList();
+            return medicines.Where(x => x.Name.StartsWith(prefix)).ToList();
         }
     }
 }

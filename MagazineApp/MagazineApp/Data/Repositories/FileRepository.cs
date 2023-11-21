@@ -1,7 +1,7 @@
-﻿using MagazineApp.Entities;
+﻿using MagazineApp.Data.Entities;
 using System.Text.Json;
 
-namespace MagazineApp.Repositories;
+namespace MagazineApp.Data.Repositories;
 
 public class FileRepository<T> : IRepository<T>
     where T : class, IEntity, new()
@@ -50,12 +50,12 @@ public class FileRepository<T> : IRepository<T>
     public T? GetById(int id)
     {
         var itemById = _items.SingleOrDefault(item => item.Id == id);
-        if (itemById == null) 
+        if (itemById == null)
         {
             Console.WriteLine($"{typeof(T).Name} with ID {id} not found.");
         }
         return itemById;
-        
+
     }
     public void Remove(T item)
     {
