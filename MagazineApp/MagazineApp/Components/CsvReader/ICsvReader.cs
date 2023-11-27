@@ -1,0 +1,10 @@
+﻿
+using MagazineApp.Components.CsvReader.Models;
+
+namespace MagazineApp.Components.CsvReader;
+
+public interface ICsvReader
+{
+    List<Car> ProcessCars(string filePath);
+    List<Manufacturer> ProcessManufacturers(string filePath);
+}
