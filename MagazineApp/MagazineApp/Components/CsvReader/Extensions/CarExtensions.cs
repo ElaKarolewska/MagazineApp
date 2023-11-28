@@ -1,5 +1,4 @@
 ﻿using MagazineApp.Components.CsvReader.Models;
-using System.Data.Common;
 using System.Globalization;
 
 namespace MagazineApp.Components.CsvReader.Extensions;

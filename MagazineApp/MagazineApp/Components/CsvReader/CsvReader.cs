@@ -41,4 +41,36 @@ public class CsvReader : ICsvReader
                 });
         return manufacturers.ToList();
     }
+
+    public List<Medicines> ProcessMedicines(string filePath)
+    {
+        if (!File.Exists(filePath))
+        {
+            return new List<Medicines>();
+        }
+        var medicines =
+            File.ReadAllLines(filePath)
+            .Skip(1)
+            .Where(x => x.Length > 1)
+            .ToMedicines();
+
+        return medicines.ToList();
+
+    }
+
+    public List<Pharmacies> ProcessPharmacies(string filePath)
+    {
+        if (!File.Exists(filePath)) 
+        {
+             return new List<Pharmacies> ();   
+        }
+        var pharmacies =
+            File.ReadAllLines(filePath)
+            .Skip(1)
+            .Where(x => x.Length > 1)
+            .ToPharmacies();
+
+        return pharmacies.ToList();
+    
+    }
 }

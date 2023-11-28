@@ -2,7 +2,7 @@
 
 public class Medicines
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
     public string Name { get; set; }
     public string Substance { get; set; }
     public string Packaging { get; set; }
