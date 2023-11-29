@@ -16,7 +16,7 @@ public static class PharmaciesExtensions
                 Id = int.Parse(columns[0]),
                 Name = columns[1],
                 Type = columns[2],
-                DateOfAuthorisation = int.Parse(columns[3]),
+                DateOfAuthorisation = columns[3],
                 Locality = columns[4],
                 Owner = columns[5],
 
