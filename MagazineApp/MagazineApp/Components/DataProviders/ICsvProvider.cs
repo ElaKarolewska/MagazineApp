@@ -1,7 +1,7 @@
-﻿//namespace MagazineApp.Components.DataProviders;
+﻿namespace MagazineApp.Components.DataProviders;
 
-//public interface ICsvProvider
-//{
-//    void GenerateDataFromCsvFile();
+public interface ICsvProvider
+{
+    void GenerateDataFromCsvFile();
 
-//}
+}

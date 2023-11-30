@@ -1,20 +1,25 @@
-﻿//using MagazineApp.Components.XmlReader;
+﻿using MagazineApp.Components.XmlReader;
 
 
-//namespace MagazineApp;
+namespace MagazineApp;
 
-//public class AppXml : IApp
-//{
-//    private readonly IXmlCreator _xmlCreator;
+public class AppXml : IApp
+{
+    private readonly IXmlCreator _xmlCreator;
 
-//    public AppXml(IXmlCreator xmlCreator)
-//    {
-//        _xmlCreator = xmlCreator;
-//    }
+    public AppXml(IXmlCreator xmlCreator)
+    {
+        _xmlCreator = xmlCreator;
+    }
 
-//    public void Run()
-//    {
-//        _xmlCreator.CreateXml();
-//    }
+    public void Run()
+    {
+        _xmlCreator.CreateXml();
 
-//}
+       
+
+    }
+
+
+
+}

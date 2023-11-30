@@ -20,9 +20,6 @@
     <None Update="Resources\Files\manufacturers.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Files\Medicines.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Resources\Files\Pharmacies.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
