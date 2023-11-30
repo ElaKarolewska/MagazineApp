@@ -1,7 +1,7 @@
-﻿//namespace MagazineApp.Components.XmlReader;
+﻿namespace MagazineApp.Components.XmlReader;
 
-//public interface IXmlCreator
-//{
-//    public void CreateXml();
-//    public void QueryXml();
-//}
+public interface IXmlCreator
+{
+    public void CreateXml();
+    public void QueryXml();
+}

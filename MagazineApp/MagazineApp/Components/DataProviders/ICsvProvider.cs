@@ -1,7 +1,12 @@
-﻿//namespace MagazineApp.Components.DataProviders;
+﻿using MagazineApp.Components.CsvReader.Models;
 
-//public interface ICsvProvider
-//{
-//    void GenerateDataFromCsvFile();
+namespace MagazineApp.Components.DataProviders;
 
-//}
+public interface ICsvProvider
+{
+    void GenerateDataFromCsvFile();
+    List<Pharmacies> GeneratePharmaceries();
+
+    void GenerateXml();
+
+}
