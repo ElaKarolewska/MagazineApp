@@ -15,11 +15,5 @@ public class AppXml : IApp
     public void Run()
     {
         _xmlCreator.CreateXml();
-
-       
-
     }
-
-
-
 }

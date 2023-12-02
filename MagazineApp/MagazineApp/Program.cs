@@ -8,7 +8,7 @@ using MagazineApp.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
-services.AddSingleton<IApp, AppXml>();
+services.AddSingleton<IApp, App>();
 services.AddSingleton<IRepository<Medicine>, FileRepository<Medicine>>();
 services.AddSingleton<IMedicineProvider, MedicineProvider>();
 
