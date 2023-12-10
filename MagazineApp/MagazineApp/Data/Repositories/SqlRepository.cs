@@ -6,12 +6,13 @@ namespace MagazineApp.Data.Repositories;
 public class SqlRepository<T> : IRepository<T>
     where T : class, IEntity, new()
 {
-    private readonly DbContext _dbContext;
+    private readonly MagazineAppDbContext _magazineAppDbContext;
     private readonly DbSet<T> _dbSet;
-    public SqlRepository(DbContext dbContext)
+    public SqlRepository(MagazineAppDbContext magazineAppDbContext)
     {
-        _dbContext = dbContext;
-        _dbSet = dbContext.Set<T>();
+         _magazineAppDbContext = magazineAppDbContext;
+        _magazineAppDbContext.Database.EnsureCreated();
+        _dbSet = _magazineAppDbContext.Set<T>();
     }
 
     public event EventHandler<T>? ItemAdded;
@@ -36,7 +37,7 @@ public class SqlRepository<T> : IRepository<T>
     }
     public void Save()
     {
-        _dbContext.SaveChanges();
+        _magazineAppDbContext.SaveChanges();
     }
     public IEnumerable<T> Read()
     {

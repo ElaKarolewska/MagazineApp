@@ -1,4 +1,5 @@
 ﻿using MagazineApp.Components.DataProviders;
+using MagazineApp.Data;
 using MagazineApp.Data.Entities;
 using MagazineApp.Data.Repositories;
 
@@ -8,10 +9,13 @@ public class UserCommunication : IUserCommunication
 {
     private readonly IRepository<Medicine> _medicineRepository;
     private readonly IMedicineProvider? _medicineProvider;
-    public UserCommunication(IRepository<Medicine> medicineRepository, IMedicineProvider medicineProvider)
+    private readonly MagazineAppDbContext _magazineAppDbContext;
+    
+    public UserCommunication(IRepository<Medicine> medicineRepository, IMedicineProvider medicineProvider, MagazineAppDbContext magazineAppDbContext)
     {
         _medicineRepository = medicineRepository;
         _medicineProvider = medicineProvider;
+        _magazineAppDbContext = magazineAppDbContext;
     }
      public void ChooseWhatToDo()
      {
@@ -43,10 +47,10 @@ public class UserCommunication : IUserCommunication
                     RemoveMedicine(_medicineRepository);
                     break;
                 case "3":
-                    WriteAllToConsole(_medicineRepository);
-                    break;
+                     WriteAllToConsole(_medicineRepository);
+                     break;
                 case "4":
-                    OrderByName(_medicineProvider); 
+                    OrderByName(_medicineProvider);
                     break;
                 case "5":
                     WhereQuantityIsGreaterThan(_medicineProvider);
@@ -76,9 +80,10 @@ public class UserCommunication : IUserCommunication
         Console.WriteLine("Please enter ID:");
         var input = Console.ReadLine();
         var id = int.Parse(input);
-        
+
         Console.WriteLine(_medicineProvider.SingleOrDefaultById(id));
     }
+
 
     private void GetMaximumPriceOfAllMedicines(IMedicineProvider? medicineProvider)
     {
@@ -92,7 +97,7 @@ public class UserCommunication : IUserCommunication
         foreach (var item in _medicineProvider.WhereStartsWith(letter))
         {
             Console.WriteLine(item);
-        
+
         }
     }
     private void WhereQuantityIsGreaterThan(IMedicineProvider? medicineProvider)
@@ -100,7 +105,7 @@ public class UserCommunication : IUserCommunication
         Console.WriteLine("Please enter quantity you want to check:");
         var input = Console.ReadLine();
         var quantity = int.Parse(input);
-       
+
         foreach (var item in _medicineProvider.WhereQuantityIsGreaterThan(quantity))
         {
             Console.WriteLine(item);
@@ -161,10 +166,10 @@ public class UserCommunication : IUserCommunication
     }
     private void WriteAllToConsole(IReadRepository<IEntity> repository)
     {
-            var items = repository.GetAll();
-            foreach (var item in items)
-            {
-               Console.WriteLine(item);
-            }
+        var items = repository.GetAll();
+        foreach (var item in items)
+        {
+            Console.WriteLine(item);
+        }
     }
 }

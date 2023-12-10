@@ -1,16 +1,17 @@
-﻿using MagazineApp.Data.Entities;
+﻿
+using MagazineApp.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MagazineApp.Data;
 
 public class MagazineAppDbContext: DbContext
 {
-    public DbSet<Medicine> Medicines => Set<Medicine>();
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public MagazineAppDbContext(DbContextOptions<MagazineAppDbContext> options)
+        : base(options) 
     {
-        base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseInMemoryDatabase("StorageAppDb");
     }
+    //public DbSet<Pharmacie>Pharmacies { get; set; }
+    public DbSet<Medicine> Medicines { get; set; }
+
 }
 
