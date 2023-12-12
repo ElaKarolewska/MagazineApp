@@ -10,7 +10,7 @@ public class SqlRepository<T> : IRepository<T>
     private readonly DbSet<T> _dbSet;
     public SqlRepository(MagazineAppDbContext magazineAppDbContext)
     {
-         _magazineAppDbContext = magazineAppDbContext;
+        _magazineAppDbContext = magazineAppDbContext;
         _magazineAppDbContext.Database.EnsureCreated();
         _dbSet = _magazineAppDbContext.Set<T>();
     }

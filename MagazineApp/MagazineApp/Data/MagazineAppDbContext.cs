@@ -10,7 +10,7 @@ public class MagazineAppDbContext: DbContext
         : base(options) 
     {
     }
-    //public DbSet<Pharmacie>Pharmacies { get; set; }
+    public DbSet<Pharmacie>Pharmacies { get; set; }
     public DbSet<Medicine> Medicines { get; set; }
 
 }

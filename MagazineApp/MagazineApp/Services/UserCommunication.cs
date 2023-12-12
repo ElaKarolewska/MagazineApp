@@ -10,12 +10,14 @@ public class UserCommunication : IUserCommunication
     private readonly IRepository<Medicine> _medicineRepository;
     private readonly IMedicineProvider? _medicineProvider;
     private readonly MagazineAppDbContext _magazineAppDbContext;
-    
-    public UserCommunication(IRepository<Medicine> medicineRepository, IMedicineProvider medicineProvider, MagazineAppDbContext magazineAppDbContext)
+    private readonly IPharmaciesData _pharmaciesData;
+
+    public UserCommunication(IRepository<Medicine> medicineRepository, IMedicineProvider medicineProvider, MagazineAppDbContext magazineAppDbContext, IPharmaciesData pharmaciesData)
     {
         _medicineRepository = medicineRepository;
         _medicineProvider = medicineProvider;
         _magazineAppDbContext = magazineAppDbContext;
+        _pharmaciesData = pharmaciesData;
     }
      public void ChooseWhatToDo()
      {
@@ -34,6 +36,7 @@ public class UserCommunication : IUserCommunication
                               "6 - to display medications for a specific letter; \n" +
                               "7 - to get maximum price of all; \n" +
                               "8 - to check ID; \n" +
+                              "9 - to edit data; \n" +
                               "X - to close app.");
 
             var userInput = Console.ReadLine()?.ToUpper();
@@ -64,6 +67,9 @@ public class UserCommunication : IUserCommunication
                 case "8":
                     SingleOrDefaultById(_medicineProvider);
                     break;
+                case "9":
+                    EditMedicine(_medicineRepository);
+                    break;
                 case "X":
                     CloseApp = true;
                     break;
@@ -75,6 +81,40 @@ public class UserCommunication : IUserCommunication
         Console.WriteLine("Now you can press any key to leave.");
         Console.ReadKey();
      }
+    private void EditMedicine(IRepository<Medicine> medicineRepository)
+    {
+        Console.WriteLine("Enter ID of medicine to edit:");
+        var input = Console.ReadLine();
+        var id = int.Parse(input);
+        
+        var medicineToEdit = medicineRepository.GetById(id);
+
+        if (medicineToEdit is not null)
+        {
+            Console.WriteLine("What would you like to edit?");
+            Console.WriteLine("Press P- price or Q- quantity in stock");
+            var editData = Console.ReadLine();
+
+            if (editData == "P" || editData == "p")
+            {
+                Console.WriteLine("Insert new price");
+                Console.ReadLine();
+            }
+            else if (editData == "Q" || editData== "q") 
+            {
+                Console.WriteLine("Insert new quantity");
+                Console.ReadLine();
+            }
+            medicineRepository.Add(medicineToEdit);
+            medicineRepository.Save();
+        }
+        else 
+        {
+            Console.WriteLine("Enter ID not exist");
+        }
+       
+    }
+
     private void SingleOrDefaultById(IMedicineProvider? medicineProvider)
     {
         Console.WriteLine("Please enter ID:");

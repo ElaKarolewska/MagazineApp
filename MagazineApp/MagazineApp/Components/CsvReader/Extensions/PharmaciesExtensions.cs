@@ -1,5 +1,4 @@
 ﻿using MagazineApp.Components.CsvReader.Models;
-using System.Reflection.Metadata.Ecma335;
 
 namespace MagazineApp.Components.CsvReader.Extensions;
 
