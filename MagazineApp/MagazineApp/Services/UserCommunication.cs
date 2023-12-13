@@ -12,14 +12,17 @@ public class UserCommunication : IUserCommunication
     private readonly MagazineAppDbContext _magazineAppDbContext;
     private readonly IPharmaciesData _pharmaciesData;
 
-    public UserCommunication(IRepository<Medicine> medicineRepository, IMedicineProvider medicineProvider, MagazineAppDbContext magazineAppDbContext, IPharmaciesData pharmaciesData)
+    public UserCommunication(IRepository<Medicine> medicineRepository, IMedicineProvider medicineProvider, MagazineAppDbContext magazineAppDbContext
+           ,IPharmaciesData pharmaciesData)
     {
-        _medicineRepository = medicineRepository;
-        _medicineProvider = medicineProvider;
-        _magazineAppDbContext = magazineAppDbContext;
-        _pharmaciesData = pharmaciesData;
+         _medicineRepository = medicineRepository;
+         _medicineProvider = medicineProvider;
+         _magazineAppDbContext = magazineAppDbContext;
+         _pharmaciesData = pharmaciesData;
     }
-     public void ChooseWhatToDo()
+   
+
+    public void ChooseWhatToDo()
      {
         Console.WriteLine("          Welcome! \n" + "This is an app that organizes the pharmacy magazine. \n" + " ");
         
@@ -36,7 +39,7 @@ public class UserCommunication : IUserCommunication
                               "6 - to display medications for a specific letter; \n" +
                               "7 - to get maximum price of all; \n" +
                               "8 - to check ID; \n" +
-                              "9 - to edit data; \n" +
+                              "9 - to get Pharmacies info; \n" +
                               "X - to close app.");
 
             var userInput = Console.ReadLine()?.ToUpper();
@@ -68,7 +71,7 @@ public class UserCommunication : IUserCommunication
                     SingleOrDefaultById(_medicineProvider);
                     break;
                 case "9":
-                    EditMedicine(_medicineRepository);
+                   GetPharmaciesData(_magazineAppDbContext);
                     break;
                 case "X":
                     CloseApp = true;
@@ -80,51 +83,26 @@ public class UserCommunication : IUserCommunication
         }
         Console.WriteLine("Now you can press any key to leave.");
         Console.ReadKey();
-     }
-    private void EditMedicine(IRepository<Medicine> medicineRepository)
-    {
-        Console.WriteLine("Enter ID of medicine to edit:");
-        var input = Console.ReadLine();
-        var id = int.Parse(input);
-        
-        var medicineToEdit = medicineRepository.GetById(id);
-
-        if (medicineToEdit is not null)
-        {
-            Console.WriteLine("What would you like to edit?");
-            Console.WriteLine("Press P- price or Q- quantity in stock");
-            var editData = Console.ReadLine();
-
-            if (editData == "P" || editData == "p")
-            {
-                Console.WriteLine("Insert new price");
-                Console.ReadLine();
-            }
-            else if (editData == "Q" || editData== "q") 
-            {
-                Console.WriteLine("Insert new quantity");
-                Console.ReadLine();
-            }
-            medicineRepository.Add(medicineToEdit);
-            medicineRepository.Save();
-        }
-        else 
-        {
-            Console.WriteLine("Enter ID not exist");
-        }
-       
     }
 
+    private void GetPharmaciesData(MagazineAppDbContext magazineAppDbContext)
+    {
+        _pharmaciesData.PharmaciesInfo();
+    }
     private void SingleOrDefaultById(IMedicineProvider? medicineProvider)
     {
-        Console.WriteLine("Please enter ID:");
-        var input = Console.ReadLine();
-        var id = int.Parse(input);
-
-        Console.WriteLine(_medicineProvider.SingleOrDefaultById(id));
+            Console.WriteLine("Please enter ID:");
+            var input = Console.ReadLine();
+           
+            if ( int.TryParse(input, out int id))
+            {
+               Console.WriteLine(_medicineProvider.SingleOrDefaultById(id));
+            }                                                                                  
+            else 
+            {
+                Console.WriteLine("Invalid value");
+            }                                                                                     
     }
-
-
     private void GetMaximumPriceOfAllMedicines(IMedicineProvider? medicineProvider)
     {
         Console.WriteLine(_medicineProvider.GetMaximumPriceOfAllMedicines());
@@ -134,10 +112,10 @@ public class UserCommunication : IUserCommunication
     {
         Console.WriteLine("Please enter letter:");
         var letter = Console.ReadLine()?.ToUpper();
+       
         foreach (var item in _medicineProvider.WhereStartsWith(letter))
         {
-            Console.WriteLine(item);
-
+           Console.WriteLine(item);
         }
     }
     private void WhereQuantityIsGreaterThan(IMedicineProvider? medicineProvider)
@@ -159,7 +137,6 @@ public class UserCommunication : IUserCommunication
             Console.WriteLine(item);
         }
     }
-
     private void AddMedicine(IRepository<Medicine> medicineRepository)
     {
         Console.WriteLine("Insert medicine name:");

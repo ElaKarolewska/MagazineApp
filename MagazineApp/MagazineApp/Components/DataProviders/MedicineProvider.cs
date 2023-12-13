@@ -15,7 +15,7 @@ namespace MagazineApp.Components.DataProviders
         public double GetMaximumPriceOfAllMedicines()
         {
             var medicines = _medicinesRepository.GetAll();
-            return medicines.Select(x => x.Price).Max();
+           return medicines.Select(x => x.Price).Max();
         }
 
         public List<Medicine> OrderByName()
@@ -27,7 +27,12 @@ namespace MagazineApp.Components.DataProviders
         public Medicine SingleOrDefaultById(int id)
         {
             var medicines = _medicinesRepository.GetAll();
-            return medicines.SingleOrDefault(x => x.Id == id);
+            var medicine = medicines.SingleOrDefault(x => x.Id == id);
+            if (medicine == null) 
+            {
+                Console.WriteLine($"Medicine with insert id {id} is not exist");
+            }
+            return medicine;
         }
 
         public List<Medicine> WhereQuantityIsGreaterThan(int quantity)

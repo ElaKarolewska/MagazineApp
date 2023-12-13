@@ -8,7 +8,7 @@ public class PharmaciesData : IPharmaciesData
 {
     private readonly MagazineAppDbContext _magazineAppDbContext;
     private readonly ICsvReader _csvReader;
-    public PharmaciesData (MagazineAppDbContext magazineAppDbContext, ICsvReader csvReader)
+    public PharmaciesData(MagazineAppDbContext magazineAppDbContext, ICsvReader csvReader)
     {
         _csvReader = csvReader;
         _magazineAppDbContext = magazineAppDbContext;
@@ -16,9 +16,8 @@ public class PharmaciesData : IPharmaciesData
     }
     public void PharmaciesInfo()
     {
-        var pharmacies = _csvReader.ProcessPharmacies("Resources\\Files\\Pharmacies.csv");
         InsertData();
-        ReadAllFromDb();
+       //ReadAllFromDb();
         ReadGroupedPharmaciesFromDb();
     }
     public void InsertData()
@@ -38,16 +37,15 @@ public class PharmaciesData : IPharmaciesData
         }
         _magazineAppDbContext.SaveChanges();
     }
+    //public void ReadAllFromDb()
+    //{
+    //    var pharmaciesFromDb = _magazineAppDbContext.Pharmacies.ToList();
 
-    public void ReadAllFromDb()
-    {
-        var pharmaciesFromDb = _magazineAppDbContext.Pharmacies.ToList();
-
-        foreach (var pharmacieFromDb in pharmaciesFromDb)
-        {
-            Console.WriteLine($"\t{pharmacieFromDb.Name}:{pharmacieFromDb.Locality}");
-        }
-    }
+    //    foreach (var pharmacieFromDb in pharmaciesFromDb)
+    //    {
+    //        Console.WriteLine($"\t{pharmacieFromDb.Name}:{pharmacieFromDb.Locality}");
+    //    }
+    //}
     private void ReadGroupedPharmaciesFromDb()
     {
         var groups = _magazineAppDbContext

@@ -23,11 +23,11 @@ services.AddSingleton<IXmlCreator, XmlCreator>();
 services.AddSingleton<ICsvProvider, CsvProvider>();
 services.AddSingleton<IPharmaciesProvider, PharmaciesProvider>();
 
-services.AddDbContext<MagazineAppDbContext>(options => options
-.UseSqlServer("Data Source = KAROL\\SQLEXPRESS; Initial Catalog = MagazineAppStorage; Integrated Security = True"));
+//services.AddDbContext<MagazineAppDbContext>(options => options
+//.UseSqlServer("Data Source = KAROL\\SQLEXPRESS; Initial Catalog = MagazineAppStorage; Integrated Security = True"));
 
 services.AddDbContext<MagazineAppDbContext>(options => options
-         .UseSqlServer("Data Source = KAROL\\SQLEXPRESS; Initial Catalog = Pharmacies; Integrated Security = True"));
+        .UseSqlServer("Data Source = KAROL\\SQLEXPRESS; Initial Catalog = Pharmacies; Integrated Security = True"));
 
 services.AddSingleton<IUserCommunication, UserCommunication>();
 services.AddSingleton<IEventHandler, MagazineApp.Services.EventHandler>();
