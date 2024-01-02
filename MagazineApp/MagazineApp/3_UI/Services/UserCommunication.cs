@@ -12,6 +12,7 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
     private readonly IMedicineProvider? _medicineProvider;
     private readonly MagazineAppDbContext _magazineAppDbContext;
     private readonly IPharmaciesData _pharmaciesData;
+
     public UserCommunication(IRepository<Medicine> medicineRepository, IMedicineProvider medicineProvider, MagazineAppDbContext magazineAppDbContext
            ,IPharmaciesData pharmaciesData)
     {
@@ -133,23 +134,18 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
     private void AddMedicine(IRepository<Medicine> medicineRepository)
     {
         var name = GetInputFromUser("Insert medicine name:");
-        EmptyInputWarning (ref name, "name");
+        EmptyInputWarning(ref name, "Name");
         var dose = GetInputFromUser("Insert medicine dose:");
-        EmptyInputWarning(ref dose,"dose");
+        EmptyInputWarning(ref dose, "Dose");
         var isPrescriptionString = GetInputFromUser("Is it prescription drug? T or F")?.ToUpper();
+        EmptyInputWarning(ref isPrescriptionString, "Prescription");
         bool isPrescription = isPrescriptionString == "T";
-
-        var input = GetInputFromUser("How many tablets?");
-        var packSize = int.Parse (input);
-
-        var input1 = GetInputFromUser("What price?");
-        var price = double.Parse (input1);
-
-        var input2 = GetInputFromUser("How many packages?");
-        var quantity = int.Parse (input2);
-           
-        var medicine = new Medicine { Name = name, Dose = dose, PrescriptionDrug = isPrescription, NumberOfTablets = packSize, 
-                                     Price = (double)price, QuantityInStock = quantity};
+        var packSize =  GetIntValueFromUser("How many tablets?");
+        var price = GetDoubleValueFromUser("What price?");
+        var quantity = GetIntValueFromUser("How many packages?");
+        
+        var medicine = new Medicine { Name = name, Dose = dose, PrescriptionDrug = isPrescription, NumberOfTablets = packSize,
+                                    Price = price, QuantityInStock = quantity};
 
         medicineRepository.Add(medicine);
         medicineRepository.Save();
@@ -157,10 +153,15 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
     private void RemoveMedicine(IRepository<Medicine> medicineRepository)
     {
            var input = GetInputFromUser("Insert medicine ID to remove:");
-           var id = int.Parse(input);
-
+           if (int.TryParse(input, out int id))
+           {
+             medicineRepository.GetById(id);
+           }
+           else
+           {
+             Console.WriteLine("Invalid value.");
+           }
            var medicineToRemove = medicineRepository.GetById(id);
-
            if (medicineToRemove is not null)
            {
                medicineRepository.Remove(medicineToRemove);
