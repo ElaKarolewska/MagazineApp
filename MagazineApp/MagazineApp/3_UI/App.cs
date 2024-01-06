@@ -1,24 +1,15 @@
 ﻿using MagazineApp._3_UI.Services;
-using MagazineApp.Components.CsvReader;
-using MagazineApp.Data.Entities;
-using MagazineApp.Data.Repositories;
 using MagazineApp.Services;
 
 namespace MagazineApp;
 public class App : IApp
 {
-    private readonly IPharmaciesData _pharmaciesData;
     private readonly IUserCommunication _userCommunication;
     private readonly IEventHandler _eventHandler;
-    private readonly ICsvReader _csvReader;
-    public App(IRepository<Medicine> medicineRepository,IUserCommunication userCommunication,
-              IEventHandler eventHandler, ICsvReader csvReader, IPharmaciesData pharmaciesData)
+    public App(IUserCommunication userCommunication, IEventHandler eventHandler)
     {
-
         _eventHandler = eventHandler;
         _userCommunication = userCommunication;
-        _csvReader = csvReader;
-        _pharmaciesData = pharmaciesData;
     }
     public void Run()
     {  

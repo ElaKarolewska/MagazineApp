@@ -17,39 +17,25 @@ namespace MagazineApp._3_UI.Services
                 input = GetInputFromUser($"{inputName}:");
             }
         }
-        protected int GetIntValueFromUser(string comment)
+        protected T GetValueFromUser<T>(string comment) where T : struct
         {
             while (true)
             {
-                Console.WriteLine(comment);
-                var input = Console.ReadLine();
-                int valueInt;
-                double valueDouble;
-
-                if (int.TryParse(input, out valueInt))
+                var input = GetInputFromUser(comment);
+                try
                 {
-                   return valueInt; 
+                    if (typeof(T) == typeof(int))
+                    {
+                        return (T)(object)int.Parse(input);
+                    }
+                    else if (typeof(T) == typeof(double))
+                    {
+                        return (T)(object)double.Parse(input);
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    Console.WriteLine("Invalid value please try again.");
-                }
-            }
-        }
-        protected static double GetDoubleValueFromUser(string comment) 
-        {
-            while (true) 
-            {
-                Console.WriteLine(comment);
-                var input = Console.ReadLine();
-                double valueDouble;
-                if (double.TryParse(input, out valueDouble))
-                {
-                    return valueDouble;
-                }
-                else 
-                {
-                    Console.WriteLine("Invalid value please try again.");
+                    Console.WriteLine("Inavlid value, please try again.");
                 }
             }
         }
