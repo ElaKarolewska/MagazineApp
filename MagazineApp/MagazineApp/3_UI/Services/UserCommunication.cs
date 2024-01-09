@@ -18,6 +18,7 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
         _medicineProvider = medicineProvider;
         _pharmaciesData = pharmaciesData;
     }
+   
     public void ChooseWhatToDo()
     {
         Console.WriteLine("          Welcome! \n" + "This is an app that organizes the pharmacy magazine. \n" + " ");
@@ -84,6 +85,7 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
     {
         _pharmaciesData.PharmaciesInfo();
     }
+   
     private void SingleOrDefaultById()
     {
         var input = GetInputFromUser("Please enter ID:");
@@ -97,6 +99,7 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
             Console.WriteLine("Invalid value.");
         }
     }
+    
     private void GetMaximumPriceOfAllMedicines()
     {
         Console.WriteLine(_medicineProvider.GetMaximumPriceOfAllMedicines());
@@ -111,6 +114,7 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
             Console.WriteLine(item);
         }
     }
+    
     private void WhereQuantityIsGreaterThan()
     {
         var input = GetInputFromUser("Please enter quantity you want to check:");
@@ -121,6 +125,7 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
             Console.WriteLine(item);
         }
     }
+    
     private void OrderByName()
     {
         foreach (var item in _medicineProvider.OrderByName())
@@ -128,6 +133,7 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
             Console.WriteLine(item);
         }
     }
+   
     private void AddMedicine()
     {
         var name = GetInputFromUser("Insert medicine name:");
@@ -152,6 +158,7 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
         _medicineRepository.Add(medicine);
         _medicineRepository.Save();
     }
+    
     private void RemoveMedicine()
     {
         var input = GetInputFromUser("Insert medicine ID to remove:");
@@ -170,6 +177,7 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
             _medicineRepository.Save();
         }
     }
+    
     private void WriteAllToConsole()
     {
         var items = _medicineRepository.GetAll();

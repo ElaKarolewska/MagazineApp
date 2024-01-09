@@ -1,5 +1,4 @@
-﻿
-using MagazineApp.Data.Entities;
+﻿using MagazineApp.Data.Entities;
 using MagazineApp.Data.Repositories;
 
 namespace MagazineApp.Services;

@@ -17,6 +17,7 @@ namespace MagazineApp._3_UI.Services
                 input = GetInputFromUser($"{inputName}:");
             }
         }
+        
         protected T GetValueFromUser<T>(string comment) where T : struct
         {
             while (true)

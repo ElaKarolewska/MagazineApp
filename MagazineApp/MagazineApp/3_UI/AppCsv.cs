@@ -11,6 +11,7 @@ public class AppCsv : IApp
         _csvProvider = csvProvider;
         _pharmaciesProvider = pharmaciesProvider;
     }
+    
     public void Run()
     {
         var pharmacies = _csvProvider.GeneratePharmacies();
