@@ -21,7 +21,7 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
    
     public void ChooseWhatToDo()
     {
-        Console.WriteLine("          Welcome! \n" + "This is an app that organizes the pharmacy magazine. \n" + " ");
+        Console.WriteLine("\t Welcome! \n" + "This is an app that organizes the pharmacy magazine. \n" + " ");
 
         bool CloseApp = false;
 
