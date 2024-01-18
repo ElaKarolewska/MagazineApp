@@ -21,13 +21,12 @@ public class UserCommunication : UserCommunicationBase, IUserCommunication
    
     public void ChooseWhatToDo()
     {
-        Console.WriteLine("\t Welcome! \n" + "This is an app that organizes the pharmacy magazine. \n" + " ");
+        Console.WriteLine("\t Welcome! \n" + "This is an app that organizes the pharmacy magazine. \n" );
 
         bool CloseApp = false;
 
         while (!CloseApp)
         {
-            Console.WriteLine();
             Console.WriteLine("1 - to add medicine; \n" +
                               "2 - to remove medicine; \n" +
                               "3 - to show all saved medications; \n" +
